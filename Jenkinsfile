@@ -6,6 +6,7 @@ pipeline {
     }
 
     environment {
+        PATH = "C:\\Program Files\\Docker\\Docker\\resources\\bin;${env.PATH}"
         SONARQUBE_SERVER = 'SonarQubeServer'  // SonarQube server name in Jenkins config
         SONAR_TOKEN = 'sqa_6a647f9ce3f63b4b3e8bd5907af2b5eecbccad49'
         DOCKERHUB_CREDENTIALS_ID = 'docker_hub'
@@ -43,19 +44,19 @@ pipeline {
         }
         stage('Build Docker Image') {
          steps {
-         script {
-         docker.build("${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG}")
-         // Or specify Dockerfile path explicitly if needed
-         // docker.build("${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG}", "-f ./Dockerfile .")
-         }
-         }
+             script {
+             docker.build("${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG}")
+             // Or specify Dockerfile path explicitly if needed
+             // docker.build("${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG}", "-f ./Dockerfile .")
+                }
+             }
          }
          stage('Push Docker Image to Docker Hub') {
          steps {
-         script {
-         docker.withRegistry('https://index.docker.io/v1/', DOCKERHUB_CREDENTIALS_ID) {
-         docker.image("${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG}").push()
-         }
+             script {
+             docker.withRegistry('https://index.docker.io/v1/', DOCKERHUB_CREDENTIALS_ID) {
+             docker.image("${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG}").push()
+            }
          }
     }
 }
