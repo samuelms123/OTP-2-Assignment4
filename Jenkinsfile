@@ -12,7 +12,7 @@ pipeline {
         SONAR_TOKEN = 'sqa_6a647f9ce3f63b4b3e8bd5907af2b5eecbccad49'
         DOCKERHUB_CREDENTIALS_ID = 'docker_hub'
         DOCKERHUB_REPO = 'samuelms123/sep2_week5_f2025'
-        DOCKER_IMAGE = 'latest'
+        DOCKER_IMAGE_TAG = 'latest'
     }
 
     stages {
