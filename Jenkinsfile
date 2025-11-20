@@ -29,7 +29,7 @@ pipeline {
                     bat """
                         ${tool 'SonarScanner'}\\bin\\sonar-scanner ^
                         -Dsonar.projectKey=devops-demo ^
-                        -Dsonar.sources=src ^
+                        -Dsonar.sources=src/main/java ^
                         -Dsonar.projectName=Week4_inClass ^
                         -Dsonar.host.url=http://localhost:9000 ^
                         -Dsonar.login=${env.SONAR_TOKEN} ^
